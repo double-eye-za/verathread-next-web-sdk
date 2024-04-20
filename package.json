@@ -46,6 +46,7 @@
     "@angular-devkit/build-angular": "^17.3.3",
     "@angular/cli": "^17.3.3",
     "@angular/compiler-cli": "^17.3.0",
+    "@team-griffin/install-self-peers": "^1.1.1",
     "@types/jasmine": "~5.1.0",
     "@types/object-path": "^0.11.4",
     "jasmine-core": "~5.1.0",
