@@ -96,8 +96,6 @@ jobs:
     runs-on: custom-ubuntu-20.04-4core
     name: "Test & Build Web SDK"
     needs: [flags]
-    env:
-      BASE_DIR: common/web
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
@@ -119,19 +117,17 @@ jobs:
         with:
           node-version: 'v20.9.0'
           cache: 'yarn'
-          cache-dependency-path: 'common/web/yarn.lock'
+          cache-dependency-path: 'yarn.lock'
         env:
           FORCE_COLOR: 0
       - name: "Install"
         if: env.DRY_RUN == 'false'
-        working-directory: ${{ env.BASE_DIR }}
         run: yarn install --prefer-offline --frozen-lockfile --non-interactive
       - name: "Build"
-        working-directory: ${{ env.BASE_DIR }}
         run: yarn build
       - name: "Publish"
         if: env.DRY_RUN == 'false'
-        working-directory: ${{ env.BASE_DIR }}/dist/sdk
+        working-directory: dist/sdk
         run: |
           cp ../../.npmrc .npmrc
           yarn version --no-commit-hooks --no-git-tag-version --new-version ${{ needs.flags.outputs.version }}
