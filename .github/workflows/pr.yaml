@@ -94,7 +94,7 @@ jobs:
 
   build-web-sdk:
     runs-on: custom-ubuntu-20.04-4core
-    name: "Test & Build Web SDK"
+    name: "Test & Build SDK"
     needs: [flags]
     steps:
       - name: "Checkout"
