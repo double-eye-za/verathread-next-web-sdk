@@ -110,7 +110,7 @@ jobs:
           aws-account-id: ${{ secrets.AWS_ACCOUNT_ID }}
           aws-region: ${{ env.AWS_REGION }}
           aws-region-codeartifact: ${{ env.AWS_REGION }}
-          npmrc-output-path: ${{ env.BASE_DIR }}
+          npmrc-output-path: .
           use-sudo: true
       - name: "Setup Node"
         uses: actions/setup-node@v4
