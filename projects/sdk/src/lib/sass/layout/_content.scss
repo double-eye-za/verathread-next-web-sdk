@@ -1,0 +1,26 @@
+//
+// Content
+//
+
+// Desktop mode
+@include media-breakpoint-up(lg) {
+  body:not(.app-blank) {
+    .content {
+      padding: get($content-spacing, desktop) 0;
+
+      // Aside enabled
+      .aside-enabled & {
+        padding-left: get($content-spacing, desktop);
+      }
+    }
+  }
+}
+
+// Tablet & mobile modes
+@include media-breakpoint-down(lg) {
+  body:not(.app-blank) {
+    .content {
+      padding: get($content-spacing, tablet-and-mobile) 0;
+    }
+  }
+}

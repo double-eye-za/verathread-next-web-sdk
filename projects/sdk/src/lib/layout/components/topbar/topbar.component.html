@@ -1,0 +1,99 @@
+<!-- Search toolbar -->
+<div class="d-flex align-items-center" [ngClass]="toolbarButtonMarginClass">
+  <div
+    class="btn btn-icon btn-active-light-primary btn-custom btn-custom"
+    [ngClass]="toolbarButtonHeightClass"
+    data-kt-menu-trigger="click"
+    data-kt-menu-attach="parent"
+    data-kt-menu-placement="bottom-end"
+    data-kt-menu-flip="bottom"
+  >
+    <i class="fad fa-search svg-icon" [ngClass]="toolbarButtonIconSizeClass"></i>
+  </div>
+<!--  <app-search-result-inner></app-search-result-inner>-->
+</div>
+
+<!-- Activities -->
+<div class="d-flex align-items-center" [ngClass]="toolbarButtonMarginClass">
+  <!-- begin::Drawer toggle -->
+  <div
+    class="btn btn-icon btn-active-light-primary btn-custom"
+    [ngClass]="toolbarButtonHeightClass"
+    id="kt_activities_toggle"
+  >
+    <i class="fad fa-clipboard-list svg-icon" [ngClass]="toolbarButtonIconSizeClass"></i>
+  </div>
+  <!-- end::Drawer toggle -->
+</div>
+
+<!-- Notifications -->
+<div class="d-flex align-items-center" [ngClass]="toolbarButtonMarginClass">
+  <div
+    class="btn btn-icon btn-active-light-primary btn-custom position-relative"
+    [ngClass]="toolbarButtonHeightClass"
+    data-kt-menu-trigger="click"
+    data-kt-menu-attach="parent"
+    data-kt-menu-placement="bottom-end"
+    data-kt-menu-flip="bottom"
+  >
+    <i class="fad fa-bell svg-icon" [ngClass]="toolbarButtonIconSizeClass"></i>
+  </div>
+  <app-notifications-inner></app-notifications-inner>
+</div>
+
+<!-- Quick links -->
+<div class="d-flex align-items-center" [ngClass]="toolbarButtonMarginClass">
+  <div
+    class="btn btn-icon btn-active-light-primary btn-custom"
+    [ngClass]="toolbarButtonHeightClass"
+    data-kt-menu-trigger="click"
+    data-kt-menu-attach="parent"
+    data-kt-menu-placement="bottom-end"
+    data-kt-menu-flip="bottom"
+  >
+    <i class="fad fa-rocket-launch svg-icon" [ngClass]="toolbarButtonIconSizeClass"></i>
+  </div>
+<!--  <app-quick-links-inner></app-quick-links-inner>-->
+</div>
+
+<!-- begin::Theme mode -->
+<app-theme-mode-switcher class="d-flex align-items-center" [ngClass]="toolbarButtonMarginClass"
+  toggleBtnClass="{`btn btn-icon btn-active-light-primary btn-custom ${toolbarButtonHeightClass}`}">
+</app-theme-mode-switcher>
+<!-- end::Theme mode -->
+
+<!-- begin::User -->
+<div
+  class="d-flex align-items-center"
+  [ngClass]="toolbarButtonMarginClass"
+  id="kt_header_user_menu_toggle_module"
+>
+  <div *ngIf="!userSlotFilled" style="padding-top: 3px;">
+    <i class="fad fa-spinner fa-pulse svg-icon-4" [ngClass]="toolbarButtonIconSizeClass"></i>
+  </div>
+  <router-outlet slot="user-profile-slot" name="user-profile-slot" (activate)="onUserOutletFilled()"></router-outlet>
+</div>
+<!-- end::User -->
+
+<ng-container *ngIf="headerLeft === 'menu'">
+  <div
+    class="d-flex align-items-center d-lg-none ms-2 me-n3"
+    title="Show header menu"
+  >
+    <div
+      class="
+        btn btn-icon btn-active-light-primary btn-custom
+        w-30px
+        h-30px
+        w-md-40px
+        h-md-40px
+      "
+      id="kt_header_menu_mobile_toggle"
+    >
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/text/txt001.svg'"
+        class="svg-icon svg-icon-1"
+      ></span>
+    </div>
+  </div>
+</ng-container>

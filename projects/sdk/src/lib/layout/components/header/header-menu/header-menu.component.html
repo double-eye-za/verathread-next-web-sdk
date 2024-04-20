@@ -1,0 +1,186 @@
+<div
+  class="menu-item menu-lg-down-accordion me-lg-1"
+  data-kt-menu-trigger="hover"
+  data-kt-menu-placement="bottom-start"
+  *ngFor="let root of navigation.currentNavigationData"
+>
+  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass(root.path, root.path)"
+        *ngIf="!root.hidden && root.children && root.children.length > 0">
+    <span class="menu-title">{{ root.title }}</span>
+    <span class="menu-arrow d-lg-none"></span>
+  </span>
+
+  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass(root.path, root.path)"
+        [routerLink]="root.path"
+        *ngIf="!root.hidden && (!root.children || root.children.length == 0)">
+    <span class="menu-title">{{ root.title }}</span>
+    <span class="menu-arrow d-lg-none"></span>
+  </span>
+
+  <div *ngIf="root.children && root.children.length > 0 && !root.hidden && !root.megaMenu"
+       class="
+      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
+      py-lg-4
+      w-lg-225px
+    "
+       data-kt-menu-dismiss="true"
+  >
+    <div
+      class="menu-item menu-lg-down-accordion me-lg-1"
+      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+      data-kt-menu-placement="right-start"
+      *ngFor="let level1 of root.children"
+    >
+      <span
+        class="menu-link py-3"
+        [routerLink]="root.path + '/' + level1.path"
+        [ngClass]="calculateMenuItemCssClass( root.path + '/' + level1.path, root.path)"
+      >
+        <span class="menu-icon">
+          <i class="fad fa-browser svg-icon svg-icon-2" *ngIf="!level1.icon"></i>
+          <i class="svg-icon svg-icon-2" [ngClass]="root.icon" *ngIf="level1.icon"></i>
+        </span>
+        <span class="menu-title">{{ level1.title }}</span>
+      </span>
+    </div>
+  </div>
+
+  <div *ngIf="root.children && root.children.length > 0 && !root.hidden && root.megaMenu == 'v1'"
+       class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown p-0 w-100 w-lg-650px"
+       data-kt-menu-dismiss="true"
+  >
+    <div
+      class="menu-state-bg menu-extended overflow-hidden overflow-lg-visible"
+      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+      data-kt-menu-dismiss="true"
+    >
+      <!--begin:Row-->
+      <div class="row">
+        <!--begin:Col-->
+        <div class="col-lg-6 mb-3"
+             *ngFor="let level1 of root.children">
+          <!--begin:Menu item-->
+          <div class="menu-item p-0 m-0">
+            <!--begin:Menu link-->
+            <a [routerLink]="root.path + '/' + level1.path" class="menu-link"
+               [ngClass]="calculateMenuItemCssClass( root.path + '/' + level1.path, root.path)">
+            <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
+              <i class="fad fa-browser svg-icon svg-icon-2" *ngIf="!level1.icon"></i>
+              <i class="svg-icon svg-icon-2 fad fa-2x"
+                 [ngClass]="level1.icon" [style]="level1.iconStyle" *ngIf="level1.icon"></i>
+            </span>
+              <span class="d-flex flex-column">
+              <span class="fs-6 fw-bold text-gray-800">{{ level1.title }}</span>
+              <span class="fs-7 fw-semibold text-muted">{{ level1.subtitle }}</span>
+            </span>
+            </a>
+            <!--end:Menu link-->
+          </div>
+          <!--end:Menu item-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--&lt;!&ndash; Dashboard &ndash;&gt;-->
+<!--<div class="menu-item me-lg-1">-->
+<!--  <a class="menu-link py-3" routerLinkActive="active" routerLink="/dashboard"-->
+<!--  ><span class="menu-title" translate="MENU.DASHBOARD">Dashboard</span-->
+<!--  ></a>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Verathread V1 &ndash;&gt;-->
+<!--<div class="menu-item me-lg-1">-->
+<!--  <a class="menu-link py-3" routerLinkActive="active" routerLink="/verathread"-->
+<!--  ><span class="menu-title">Verathread</span-->
+<!--  ></a>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Rune &ndash;&gt;-->
+<!--<div class="menu-item me-lg-1">-->
+<!--  <a class="menu-link py-3" routerLinkActive="active" routerLink="/rune"-->
+<!--  ><span class="menu-title">Rune</span-->
+<!--  ></a>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Apps &ndash;&gt;-->
+<!--<div-->
+<!--  class="menu-item menu-lg-down-accordion me-lg-1"-->
+<!--  data-kt-menu-trigger="hover"-->
+<!--  data-kt-menu-placement="bottom-start"-->
+<!--&gt;-->
+<!--  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/apps')">-->
+<!--    <span class="menu-title">Apps</span>-->
+<!--    <span class="menu-arrow d-lg-none"></span>-->
+<!--  </span>-->
+<!--  <div-->
+<!--    class="-->
+<!--      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0-->
+<!--      py-lg-4-->
+<!--      w-lg-225px-->
+<!--    "-->
+<!--    data-kt-menu-dismiss="true"-->
+<!--  >-->
+<!--    <div-->
+<!--      class="menu-item menu-lg-down-accordion me-lg-1"-->
+<!--      data-kt-menu-trigger="{default:'click', lg: 'hover'}"-->
+<!--      data-kt-menu-placement="right-start"-->
+<!--    >-->
+<!--      <span-->
+<!--        class="menu-link py-3"-->
+<!--        [ngClass]="calculateMenuItemCssClass('/apps/chat')"-->
+<!--      >-->
+<!--        <span class="menu-icon">-->
+<!--          <span-->
+<!--            class="svg-icon svg-icon-2"-->
+<!--            [inlineSVG]="'./assets/media/icons/duotune/general/gen022.svg'"-->
+<!--          >-->
+<!--          </span>-->
+<!--        </span>-->
+<!--        <span class="menu-title">Chat</span>-->
+<!--      </span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Settings &ndash;&gt;-->
+<!--<div-->
+<!--  class="menu-item menu-lg-down-accordion me-lg-1"-->
+<!--  data-kt-menu-trigger="hover"-->
+<!--  data-kt-menu-placement="bottom-start"-->
+<!--&gt;-->
+<!--  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/settings')">-->
+<!--    <span class="menu-title">Settings</span>-->
+<!--    <span class="menu-arrow d-lg-none"></span>-->
+<!--  </span>-->
+<!--  <div-->
+<!--    class="-->
+<!--      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0-->
+<!--      py-lg-4-->
+<!--      w-lg-225px-->
+<!--    "-->
+<!--    data-kt-menu-dismiss="true"-->
+<!--  >-->
+<!--    <div-->
+<!--      class="menu-item menu-lg-down-accordion me-lg-1"-->
+<!--      data-kt-menu-trigger="{default:'click', lg: 'hover'}"-->
+<!--      data-kt-menu-placement="right-start"-->
+<!--    >-->
+<!--      <span-->
+<!--        class="menu-link py-3"-->
+<!--        [ngClass]="calculateMenuItemCssClass('/settings/organizations')"-->
+<!--      >-->
+<!--        <span class="menu-icon">-->
+<!--          <span-->
+<!--            class="svg-icon svg-icon-2"-->
+<!--            [inlineSVG]="'./assets/media/icons/duotune/general/gen022.svg'"-->
+<!--          >-->
+<!--          </span>-->
+<!--        </span>-->
+<!--        <span class="menu-title" routerLink="/settings/organizations">Organizations</span>-->
+<!--      </span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+

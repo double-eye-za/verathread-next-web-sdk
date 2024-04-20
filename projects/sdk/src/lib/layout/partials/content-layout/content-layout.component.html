@@ -1,0 +1,13 @@
+<div #toolbarProjection class="toolbar-wrapper">
+  <ng-content select="[toolbar]"></ng-content>
+</div>
+
+<div class="post d-flex flex-column-fluid" id="kt_post"
+     [ngClass]="{'no-gutter': !gutter, 'content-with-toolbar': hasContentProjection()}">
+  <div
+    id="kt_content_container"
+    [ngClass]="contentContainerClasses"
+  >
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>

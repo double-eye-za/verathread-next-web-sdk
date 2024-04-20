@@ -1,0 +1,13 @@
+.auth {
+  background-image: url('/assets/media/auth/bg10-dark.jpeg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bs-page-bg);
+  background-repeat: no-repeat;
+}
+
+
+[data-bs-theme="dark"] .auth {
+  background-image: url('/assets/media/patterns/header-bg-dark.jpg');
+}
