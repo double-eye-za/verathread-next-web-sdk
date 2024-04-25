@@ -1,73 +1,101 @@
 import {InjectionToken, ModuleWithProviders, NgModule, NgZone} from "@angular/core";
-import {Apollo, APOLLO_OPTIONS, ApolloModule} from "apollo-angular";
+import {Apollo, APOLLO_OPTIONS} from "apollo-angular";
 import {HttpLink} from "apollo-angular/http";
 import {HttpClientModule, HttpHeaders} from "@angular/common/http";
 import {InMemoryCache} from '@apollo/client/cache';
-import type {ApolloClientOptions} from "@apollo/client/core";
+import {ApolloClientOptions, ApolloLink, from, Operation, split} from "@apollo/client/core";
+import {WebSocketLink} from "@apollo/client/link/ws";
+import {getMainDefinition} from "@apollo/client/utilities";
+import {OperationDefinitionNode} from "graphql/language/ast";
+import {RetryLink} from "@apollo/client/link/retry";
 
 export const GRAPHQL_CONFIG = new InjectionToken<GraphQLConfiguration>('graphql.config');
 
 export interface GraphQLConfiguration {
   url: string;
+  wsUrl: string
 }
 
-const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration) => {
-  const token = localStorage.getItem('token');
+function setTokenInHeader(operation: Operation) {
+  if (localStorage.getItem('token')) {
+    operation.setContext({
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Accept: 'charset=utf-8',
+      },
+    });
+  }
+}
 
-  const headers = new HttpHeaders({
-    "Access-Control-Allow-Origin": "*",
-    authorization: token ? `Bearer ${token}` : "",
+const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration): ApolloClientOptions<any> => {
+  console.info('initializing apollo', cfg.url, cfg.wsUrl);
+  debugger
+  const auth = new ApolloLink((operation, forward) => {
+    setTokenInHeader(operation);
+    return forward(operation);
   });
 
-  return {
-    link: httpLink.create({
-      uri: cfg.url,
-      headers,
-      withCredentials: false
+  // Create a WebSocket link:
+  const ws = new WebSocketLink({
+    uri: cfg.wsUrl,
+    options: {
+      lazy: true,
+      reconnect: true,
+      timeout: 30000,
+      minTimeout: 10000,
+      connectionParams: async () => {
+        return {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        };
+      },
+    },
+  });
+
+  const http = httpLink.create({
+    uri: cfg.url,
+  })
+
+  const link = from([
+    auth,
+    new RetryLink({
+      delay: {
+        initial: 300,
+        max: 5000,
+        jitter: true,
+      },
+      attempts: {
+        max: 3,
+        retryIf: (error, _operation) => !!error,
+      },
     }),
+    split(
+      ({ query }) => {
+        const data = getMainDefinition(query);
+        return data.kind === 'OperationDefinition' && data.operation === 'subscription';
+      },
+      ws,
+      http
+    ),
+  ]);
+
+  return {
     cache: new InMemoryCache(),
+    link: link,
     defaultOptions: {
       watchQuery: {
         fetchPolicy: 'cache-and-network',
       },
       query: {
-        fetchPolicy: 'cache-first',
-        errorPolicy: 'all',
+        fetchPolicy: 'network-only',
+        errorPolicy: 'none',
       },
-    }
-  };
-}
-
-const apolloOptions = (httpLink: HttpLink, cfg: GraphQLConfiguration): ApolloClientOptions<any> => {
-  const token = localStorage.getItem('token');
-
-  const headers = new HttpHeaders({
-    "Access-Control-Allow-Origin": "*",
-    authorization: token ? `Bearer ${token}` : "",
-  });
-
-  return {
-    link: httpLink.create({
-      uri: cfg.url,
-      headers,
-      withCredentials: false
-    }),
-    cache: new InMemoryCache(),
-    defaultOptions: {
-      watchQuery: {
-        fetchPolicy: 'cache-and-network',
-      },
-      query: {
-        fetchPolicy: 'cache-first',
-        errorPolicy: 'all',
-      },
-    }
-  };
+    },
+  }
 }
 
 @NgModule({
-  imports: [HttpClientModule],
-  exports: [HttpClientModule],
+  imports: [],
+  exports: [],
 })
 export class GraphQLModule {
   static forRoot(config: GraphQLConfiguration): ModuleWithProviders<GraphQLModule> {
@@ -82,13 +110,12 @@ export class GraphQLModule {
           provide: APOLLO_OPTIONS, useFactory: apolloFactory,
           deps: [HttpLink, GRAPHQL_CONFIG],
         },
-        {
-          provide: Apollo, useFactory: (zone: NgZone, httpLink: HttpLink) => {
-            console.info('initializing apollo client')
-            return new Apollo(zone, apolloOptions(httpLink, config))
-          }, deps: [HttpLink]
-        },
-        Apollo
+        // {
+        //   provide: Apollo, useFactory: (zone: NgZone, httpLink: HttpLink) => {
+        //     console.info('initializing apollo client')
+        //     return new Apollo(zone, apolloFactory(httpLink, config))
+        //   }, deps: [HttpLink]
+        // },
       ]
     }
   }
