@@ -29,7 +29,7 @@ function setTokenInHeader(operation: Operation) {
 
 const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration): ApolloClientOptions<any> => {
   console.info('initializing apollo', cfg.url, cfg.wsUrl);
-  debugger
+
   const auth = new ApolloLink((operation, forward) => {
     setTokenInHeader(operation);
     return forward(operation);
@@ -94,7 +94,7 @@ const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration): ApolloCli
 }
 
 @NgModule({
-  imports: [],
+  imports: [HttpClientModule],
   exports: [],
 })
 export class GraphQLModule {
@@ -110,12 +110,12 @@ export class GraphQLModule {
           provide: APOLLO_OPTIONS, useFactory: apolloFactory,
           deps: [HttpLink, GRAPHQL_CONFIG],
         },
-        // {
-        //   provide: Apollo, useFactory: (zone: NgZone, httpLink: HttpLink) => {
-        //     console.info('initializing apollo client')
-        //     return new Apollo(zone, apolloFactory(httpLink, config))
-        //   }, deps: [HttpLink]
-        // },
+        {
+          provide: Apollo, useFactory: (zone: NgZone, httpLink: HttpLink) => {
+            console.info('initializing apollo client')
+            return new Apollo(zone, apolloFactory(httpLink, config))
+          }, deps: [NgZone, HttpLink]
+        },
       ]
     }
   }

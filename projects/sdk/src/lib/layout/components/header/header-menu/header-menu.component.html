@@ -18,11 +18,7 @@
   </span>
 
   <div *ngIf="root.children && root.children.length > 0 && !root.hidden && !root.megaMenu"
-       class="
-      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
-      py-lg-4
-      w-lg-225px
-    "
+       class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px"
        data-kt-menu-dismiss="true"
   >
     <div
@@ -33,11 +29,33 @@
     >
       <span
         class="menu-link py-3"
+        *ngIf="level1.healthy"
         [routerLink]="root.path + '/' + level1.path"
+        [ngbTooltip]="!level1.healthy ? 'App is not healthy' : level1.subtitle"
         [ngClass]="calculateMenuItemCssClass( root.path + '/' + level1.path, root.path)"
       >
         <span class="menu-icon">
-          <i class="fad fa-browser svg-icon svg-icon-2" *ngIf="!level1.icon"></i>
+          <i class="fad fa-browser svg-icon svg-icon-2"
+             [ngClass]="{'text-danger': !level1.healthy}"
+             *ngIf="!level1.icon">
+
+          </i>
+          <i class="svg-icon svg-icon-2" [ngClass]="root.icon" *ngIf="level1.icon"></i>
+        </span>
+        <span class="menu-title">{{ level1.title }}</span>
+      </span>
+
+      <span
+        class="menu-link py-3 disabled"
+        *ngIf="!level1.healthy"
+        [ngbTooltip]="'App is not healthy'"
+      >
+        <span class="menu-icon">
+          <i class="fad fa-browser svg-icon svg-icon-2"
+             [ngClass]="{'text-danger': !level1.healthy}"
+             *ngIf="!level1.icon">
+
+          </i>
           <i class="svg-icon svg-icon-2" [ngClass]="root.icon" *ngIf="level1.icon"></i>
         </span>
         <span class="menu-title">{{ level1.title }}</span>

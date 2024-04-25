@@ -1,8 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {InlineSVGModule} from "ng-inline-svg-2";
-import {NAVIGATION_SERVICE_TOKEN, NavigationService} from "../../../core/navigation.service";
+import {NAVIGATION_SERVICE_TOKEN, NavigationItem, NavigationService} from "../../../core/navigation.service";
+import {DisableDirective} from "../../../../directives/disable.directive";
+import {NgbTooltip} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-header-menu',
@@ -14,7 +16,9 @@ import {NAVIGATION_SERVICE_TOKEN, NavigationService} from "../../../core/navigat
     NgClass,
     InlineSVGModule,
     NgForOf,
-    NgIf
+    NgIf,
+    DisableDirective,
+    NgbTooltip
   ],
   standalone: true,
   host: {id: 'layout-header-menu'}
@@ -22,15 +26,26 @@ import {NAVIGATION_SERVICE_TOKEN, NavigationService} from "../../../core/navigat
 export class HeaderMenuComponent implements OnInit {
   constructor(
     private router: Router,
-    @Inject(NAVIGATION_SERVICE_TOKEN) public navigation: NavigationService
+    @Inject(NAVIGATION_SERVICE_TOKEN) public navigation: NavigationService,
+    private cdr: ChangeDetectorRef
   ) {
   }
 
   ngOnInit(): void {
+    this.navigation.navigationDataChanged.subscribe(() => {
+      console.log('rebuilding navigation', this.navigation.currentNavigationData);
+      this.cdr.detectChanges()
+    })
   }
 
   calculateMenuItemCssClass(url: string, root: string): string {
     return checkIsActive(this.router.url, url, root) ? 'active' : '';
+  }
+
+  preventIfRequired($event: MouseEvent, nav: NavigationItem) {
+    if (!nav.healthy) {
+      $event.preventDefault();
+    }
   }
 }
 

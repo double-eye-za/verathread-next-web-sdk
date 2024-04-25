@@ -9,6 +9,7 @@ import {has} from "object-path";
 export const NAVIGATION_SERVICE_TOKEN = new InjectionToken<Environment>('navigation.service');
 
 export interface NavigationItem {
+  id: string;
   title: string;
   subtitle?: string;
   root: boolean;
@@ -24,6 +25,7 @@ export interface NavigationItem {
   authRequired?: boolean;
   hidden?: boolean;
   children?: Array<NavigationItem>;
+  healthy?: boolean;
 }
 
 export type NavigationData = NavigationItem[]
