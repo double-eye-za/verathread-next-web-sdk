@@ -66,18 +66,11 @@ jobs:
           PRERELEASE: true
           PRERELEASE_SUFFIX: beta
           DRY_RUN: false
-      - name: Find & Replace
-        id: version
-        uses: azarc-io/regex-property-action@master
-        with:
-          value: ${{ steps.tag.outputs.tag }}
-          regex: '\.[^.]*$'
-          replacement: ".${{github.run_number}}"
       - name: Set Outputs
         id: set-outputs
         run: |
           echo "headCommitMsg=$(git show -s --format=%s)" >> "$GITHUB_OUTPUT"
-          echo "version=${{ steps.version.outputs.value }}" >> "$GITHUB_OUTPUT"
+          echo "version=${{ steps.tag.outputs.new_tag }}" >> "$GITHUB_OUTPUT"
           echo "issue=${{ steps.configure.outputs.issue }}" >> "$GITHUB_OUTPUT"
 
       - name: "Update Summary"
