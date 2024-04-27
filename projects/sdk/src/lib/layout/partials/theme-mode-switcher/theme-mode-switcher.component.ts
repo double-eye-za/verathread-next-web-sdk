@@ -17,7 +17,7 @@ import {AsyncPipe, NgClass, NgIf} from "@angular/common";
 })
 export class ThemeModeSwitcherComponent implements OnInit {
   @Input() toggleBtnClass: string = '';
-  @Input() toggleBtnIconClass: string = 'svg-icon-2';
+  @Input() toggleBtnIconClass: string = 'toolbar-icon';
   @Input() menuPlacement: string = 'bottom-end';
   @Input() menuTrigger: string = "{default: 'click', lg: 'hover'}";
   mode$: Observable<ThemeModeType>;

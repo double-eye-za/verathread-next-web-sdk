@@ -22,7 +22,8 @@
   "exports": {
     "./styles": {
       "sass": "./styles/index.scss"
-    }
+    },
+    "./assets": "./assets/*"
   },
   "sideEffects": false,
   "scripts": {

@@ -33,7 +33,6 @@ export class HeaderMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.navigation.navigationDataChanged.subscribe(() => {
-      console.log('rebuilding navigation', this.navigation.currentNavigationData);
       this.cdr.detectChanges()
     })
   }

@@ -5,7 +5,7 @@ import {HttpClientModule, HttpHeaders} from "@angular/common/http";
 import {InMemoryCache} from '@apollo/client/cache';
 import {ApolloClientOptions, ApolloLink, from, Operation, split} from "@apollo/client/core";
 import {WebSocketLink} from "@apollo/client/link/ws";
-import {getMainDefinition} from "@apollo/client/utilities";
+import {getMainDefinition, offsetLimitPagination} from "@apollo/client/utilities";
 import {OperationDefinitionNode} from "graphql/language/ast";
 import {RetryLink} from "@apollo/client/link/retry";
 
@@ -27,7 +27,7 @@ function setTokenInHeader(operation: Operation) {
   }
 }
 
-const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration): ApolloClientOptions<any> => {
+const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration, cache: InMemoryCache): ApolloClientOptions<any> => {
   console.info('initializing apollo', cfg.url, cfg.wsUrl);
 
   const auth = new ApolloLink((operation, forward) => {
@@ -79,15 +79,17 @@ const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration): ApolloCli
   ]);
 
   return {
-    cache: new InMemoryCache(),
+    connectToDevTools: true,
+    assumeImmutableResults: true,
+    cache: cache,
     link: link,
     defaultOptions: {
       watchQuery: {
-        fetchPolicy: 'cache-and-network',
+        fetchPolicy: 'network-only',
       },
       query: {
         fetchPolicy: 'network-only',
-        errorPolicy: 'none',
+        errorPolicy: 'all',
       },
     },
   }
@@ -108,14 +110,21 @@ export class GraphQLModule {
         },
         {
           provide: APOLLO_OPTIONS, useFactory: apolloFactory,
-          deps: [HttpLink, GRAPHQL_CONFIG],
+          deps: [HttpLink, GRAPHQL_CONFIG, InMemoryCache],
         },
         {
-          provide: Apollo, useFactory: (zone: NgZone, httpLink: HttpLink) => {
+          provide: Apollo, useFactory: (zone: NgZone, httpLink: HttpLink, cache: InMemoryCache) => {
             console.info('initializing apollo client')
-            return new Apollo(zone, apolloFactory(httpLink, config))
-          }, deps: [NgZone, HttpLink]
+            return new Apollo(zone, apolloFactory(httpLink, config, cache))
+          }, deps: [NgZone, HttpLink, InMemoryCache]
         },
+        {
+          provide: InMemoryCache, useValue: new InMemoryCache({
+            typePolicies: {
+              traders: offsetLimitPagination(['where', 'sort', 'page'])
+            }
+          })
+        }
       ]
     }
   }

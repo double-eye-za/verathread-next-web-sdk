@@ -8,7 +8,7 @@
     data-kt-menu-placement="bottom-end"
     data-kt-menu-flip="bottom"
   >
-    <i class="fad fa-search svg-icon" [ngClass]="toolbarButtonIconSizeClass"></i>
+    <i class="fad fa-search" [ngClass]="toolbarButtonIconSizeClass"></i>
   </div>
 <!--  <app-search-result-inner></app-search-result-inner>-->
 </div>
@@ -21,7 +21,7 @@
     [ngClass]="toolbarButtonHeightClass"
     id="kt_activities_toggle"
   >
-    <i class="fad fa-clipboard-list svg-icon" [ngClass]="toolbarButtonIconSizeClass"></i>
+    <i class="fad fa-clipboard-list" [ngClass]="toolbarButtonIconSizeClass"></i>
   </div>
   <!-- end::Drawer toggle -->
 </div>
@@ -36,7 +36,7 @@
     data-kt-menu-placement="bottom-end"
     data-kt-menu-flip="bottom"
   >
-    <i class="fad fa-bell svg-icon" [ngClass]="toolbarButtonIconSizeClass"></i>
+    <i class="fad fa-bell" [ngClass]="toolbarButtonIconSizeClass"></i>
   </div>
   <app-notifications-inner></app-notifications-inner>
 </div>
@@ -51,7 +51,7 @@
     data-kt-menu-placement="bottom-end"
     data-kt-menu-flip="bottom"
   >
-    <i class="fad fa-rocket-launch svg-icon" [ngClass]="toolbarButtonIconSizeClass"></i>
+    <i class="fad fa-rocket-launch" [ngClass]="toolbarButtonIconSizeClass"></i>
   </div>
 <!--  <app-quick-links-inner></app-quick-links-inner>-->
 </div>
@@ -69,7 +69,7 @@
   id="kt_header_user_menu_toggle_module"
 >
   <div *ngIf="!userSlotFilled" style="padding-top: 3px;">
-    <i class="fad fa-spinner fa-pulse svg-icon-4" [ngClass]="toolbarButtonIconSizeClass"></i>
+    <i class="fad fa-spinner fa-pulse-4" [ngClass]="toolbarButtonIconSizeClass"></i>
   </div>
   <router-outlet slot="user-profile-slot" name="user-profile-slot" (activate)="onUserOutletFilled()"></router-outlet>
 </div>
@@ -92,7 +92,6 @@
     >
       <span
         [inlineSVG]="'./assets/media/icons/duotune/text/txt001.svg'"
-        class="svg-icon svg-icon-1"
       ></span>
     </div>
   </div>

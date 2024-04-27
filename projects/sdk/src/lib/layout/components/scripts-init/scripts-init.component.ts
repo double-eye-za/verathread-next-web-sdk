@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import { ResolveEnd, Router } from '@angular/router';
-import {filter, take, takeUntil, takeWhile} from 'rxjs/operators';
+import {filter} from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
 import {LayoutService, LayoutType, PageInfoService} from "../../core";
@@ -11,6 +11,8 @@ import {
   StickyComponent,
   ToggleComponent
 } from "../../../kt/components";
+
+import {Tooltip} from 'bootstrap';
 
 @Component({
   selector: 'app-scripts-init',
@@ -54,8 +56,26 @@ export class ScriptsInitComponent implements OnInit, OnDestroy {
     this.unsubscribe.push(layoutUpdateSubscription);
   }
 
+  /**
+   * A fix for bootstrap not removing tooltips when you use a tooltip on a link that navigates away
+   * @param event
+   */
+  @HostListener('window:click')
+  onClickAnywhereClearTooltips(event: number) {
+    const tooltips: any = document.querySelectorAll('.bs-tooltip-auto');
+    for (const item of tooltips) {
+      item.remove();
+    }
+  }
+
   pluginsInitialization() {
     setTimeout(() => {
+      new Tooltip("body", {
+        selector: '[data-bs-toggle="tooltip"]',
+        trigger: 'hover',
+        html: true,
+      })
+
       ToggleComponent.bootstrap();
       ScrollTopComponent.bootstrap();
       DrawerComponent.bootstrap();

@@ -28,19 +28,20 @@
       *ngFor="let level1 of root.children"
     >
       <span
-        class="menu-link py-3"
+        class="menu-link py-3 navigable here"
         *ngIf="level1.healthy"
         [routerLink]="root.path + '/' + level1.path"
         [ngbTooltip]="!level1.healthy ? 'App is not healthy' : level1.subtitle"
+        placement="right"
         [ngClass]="calculateMenuItemCssClass( root.path + '/' + level1.path, root.path)"
       >
         <span class="menu-icon">
-          <i class="fad fa-browser svg-icon svg-icon-2"
+          <i class="fad fa-browser"
              [ngClass]="{'text-danger': !level1.healthy}"
              *ngIf="!level1.icon">
 
           </i>
-          <i class="svg-icon svg-icon-2" [ngClass]="root.icon" *ngIf="level1.icon"></i>
+          <i class="" [ngClass]="root.icon" *ngIf="level1.icon"></i>
         </span>
         <span class="menu-title">{{ level1.title }}</span>
       </span>
@@ -51,12 +52,12 @@
         [ngbTooltip]="'App is not healthy'"
       >
         <span class="menu-icon">
-          <i class="fad fa-browser svg-icon svg-icon-2"
+          <i class="fad fa-browser"
              [ngClass]="{'text-danger': !level1.healthy}"
              *ngIf="!level1.icon">
 
           </i>
-          <i class="svg-icon svg-icon-2" [ngClass]="root.icon" *ngIf="level1.icon"></i>
+          <i class="" [ngClass]="root.icon" *ngIf="level1.icon"></i>
         </span>
         <span class="menu-title">{{ level1.title }}</span>
       </span>
@@ -83,8 +84,8 @@
             <a [routerLink]="root.path + '/' + level1.path" class="menu-link"
                [ngClass]="calculateMenuItemCssClass( root.path + '/' + level1.path, root.path)">
             <span class="menu-custom-icon d-flex flex-center flex-shrink-0 rounded w-40px h-40px me-3">
-              <i class="fad fa-browser svg-icon svg-icon-2" *ngIf="!level1.icon"></i>
-              <i class="svg-icon svg-icon-2 fad fa-2x"
+              <i class="fad fa-browser" *ngIf="!level1.icon"></i>
+              <i class="fad fa-2x"
                  [ngClass]="level1.icon" [style]="level1.iconStyle" *ngIf="level1.icon"></i>
             </span>
               <span class="d-flex flex-column">
@@ -151,7 +152,7 @@
 <!--      >-->
 <!--        <span class="menu-icon">-->
 <!--          <span-->
-<!--            class="svg-icon svg-icon-2"-->
+<!--            class=""-->
 <!--            [inlineSVG]="'./assets/media/icons/duotune/general/gen022.svg'"-->
 <!--          >-->
 <!--          </span>-->
@@ -191,7 +192,7 @@
 <!--      >-->
 <!--        <span class="menu-icon">-->
 <!--          <span-->
-<!--            class="svg-icon svg-icon-2"-->
+<!--            class=""-->
 <!--            [inlineSVG]="'./assets/media/icons/duotune/general/gen022.svg'"-->
 <!--          >-->
 <!--          </span>-->

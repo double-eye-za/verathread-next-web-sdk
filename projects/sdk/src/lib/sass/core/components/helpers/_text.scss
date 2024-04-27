@@ -48,7 +48,7 @@
 
     // Active
     .text-active-#{$name} {
-        transition: $transition-link;        
+        transition: $transition-link;
 
         i {
             transition: $transition-link;
@@ -57,12 +57,12 @@
         &.active {
             transition: $transition-link;
             color: var(--#{$prefix}text-#{$name}) !important;
-            
+
             i {
                 transition: $transition-link;
                 color: var(--#{$prefix}text-#{$name}) !important;
             }
-    
+
             .svg-icon {
                 color: var(--#{$prefix}text-#{$name}) !important;
             }
@@ -82,7 +82,7 @@
                 transition: $transition-link;
                 color: var(--#{$prefix}text-#{$name}) !important;
             }
-        }    
+        }
     }
 }
 
@@ -98,7 +98,7 @@
                 transition: $transition-link;
                 color: var(--#{$prefix}text-#{$name}) !important;
             }
-        }    
+        }
     }
 }
 
@@ -131,9 +131,9 @@ i {
     &[class^="la-"],
     &[class*=" la-"] {
         line-height: 1;
-        font-size: 1rem;
-        color: var(--#{$prefix}text-muted);        
-    }   
+        //font-size: 1rem;
+        color: var(--#{$prefix}text-muted);
+    }
 }
 
 // Link transition

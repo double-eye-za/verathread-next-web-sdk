@@ -20,16 +20,20 @@
                 [ngClass]="!bc.isSeparator && bc.isActive ? 'text-gray-900' : ''"
                 [ngClass]="!bc.isSeparator && !bc.isActive ? 'text-muted' : ''"
               >
-                <ng-container *ngIf="!bc.isSeparator">
+                <ng-container *ngIf="!bc.isSeparator && bc.path">
                   <a class="text-muted text-hover-primary" [routerLink]="bc.path">
                     {{ bc.title }}
                   </a>
                 </ng-container>
+                <ng-container *ngIf="!bc.isSeparator && !bc.path">
+                  <li class="breadcrumb-item text-gray-900">{{ bc.title }}</li>
+                </ng-container>
                 <ng-container *ngIf="bc.isSeparator">
-                  <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                  <span>
+                    <i class="fad fa-arrow-right"></i>
+                  </span>
                 </ng-container>
               </li>
-              <li class="breadcrumb-item text-gray-900">{{ title }}</li>
             </ul>
           </ng-container>
         </ng-container>

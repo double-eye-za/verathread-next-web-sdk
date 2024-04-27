@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./style.scss";
+
 // Replace above style with this css file to enable RTL styles
 // @import "./assets/css/style.rtl";
-@import './plugins.scss';
-// @import "./assets/css/style.rtl.css";
+
+// Disabled because it would enable all plugins, each module should import whatever plugins it needs
+// @import './plugins.scss';
+
 @import "./style.angular.scss";

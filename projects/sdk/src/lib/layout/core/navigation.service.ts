@@ -2,9 +2,7 @@ import {Injectable, InjectionToken} from "@angular/core";
 import {Environment} from "../../model";
 import {BehaviorSubject, Subject} from "rxjs";
 import {Route, Routes} from "@angular/router";
-import {IAuthGuard} from "../../core/interface/auth";
-import { loadRemoteModule } from "@angular-architects/module-federation";
-import {has} from "object-path";
+import {loadRemoteModule} from "@angular-architects/module-federation";
 
 export const NAVIGATION_SERVICE_TOKEN = new InjectionToken<Environment>('navigation.service');
 
@@ -50,7 +48,11 @@ export class NavigationService {
     return this.generateRoutes([], this.currentNavigationData, enrichRoute)
   }
 
-  private generateRoutes(result: Routes, currentRoutes: NavigationData, enrichRoute: (navItem: NavigationItem, route: Route) => void, parent: Route | undefined = undefined) {
+  private generateRoutes(
+    result: Routes,
+    currentRoutes: NavigationData,
+    enrichRoute: (navItem: NavigationItem, route: Route) => void, parent: Route | undefined = undefined
+  ) {
     for (let i = 0; i < currentRoutes.length; i++) {
       const entry = currentRoutes[i] as NavigationItem;
       const isRemote = entry.remoteEntry && entry.exposedModule && entry.moduleName;
@@ -66,7 +68,7 @@ export class NavigationService {
         continue
       }
 
-      if(isRemote) {
+      if (isRemote) {
         route.loadChildren = () => loadRemoteModule({
           type: 'module',
           remoteEntry: entry.remoteEntry!,
@@ -86,7 +88,7 @@ export class NavigationService {
         parent.children?.push(route)
       }
 
-      if(hasChildren) {
+      if (hasChildren) {
         this.generateRoutes(currentRoutes, entry.children!, enrichRoute, route)
       }
     }

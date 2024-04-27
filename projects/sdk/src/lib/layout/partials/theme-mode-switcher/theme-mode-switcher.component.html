@@ -1,12 +1,12 @@
 <!-- begin::Menu toggle -->
 <div class="btn btn-icon" [ngClass]="toggleBtnClass" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-  data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+     data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
   <ng-container *ngIf="mode$ | async as mode">
     <ng-container *ngIf="mode === 'dark'">
-      <i class="fad fa-moon svg-icon theme-dark-hide" [ngClass]="toggleBtnIconClass"></i>
+      <i class="fad fa-moon theme-dark-hide" [ngClass]="toggleBtnIconClass"></i>
     </ng-container>
     <ng-container *ngIf="mode === 'light'">
-      <i class="fad fa-sun svg-icon theme-light-hide" [ngClass]="toggleBtnIconClass"></i>
+      <i class="fad fa-sun theme-light-hide" [ngClass]="toggleBtnIconClass"></i>
     </ng-container>
   </ng-container>
 </div>
@@ -21,7 +21,7 @@
     <div class='menu-item px-3 my-0'>
       <a class="menu-link px-3 py-2" [ngClass]="{'active': menuMode === 'light'}" (click)="switchMode('light')">
         <span class='menu-icon' data-kt-element='icon'>
-          <i class="fad fa-sun svg-icon theme-light-hide svg-icon-3"></i>
+          <i class="fad fa-sun theme-light-hide"></i>
         </span>
         <span class='menu-title'>Light</span>
       </a>
@@ -32,7 +32,7 @@
     <div class='menu-item px-3 my-0'>
       <a class="menu-link px-3 py-2" [ngClass]="{'active': menuMode === 'dark'}" (click)="switchMode('dark')">
         <span class='menu-icon' data-kt-element='icon'>
-          <i class="fad fa-moon svg-icon theme-light-hide svg-icon-3"></i>
+          <i class="fad fa-moon theme-light-hide"></i>
         </span>
         <span class='menu-title'>Dark</span>
       </a>
@@ -43,7 +43,7 @@
     <div class='menu-item px-3 my-0'>
       <a class="menu-link px-3 py-2" [ngClass]="{'active': menuMode === 'system'}" (click)="switchMode('system')">
         <span class='menu-icon' data-kt-element='icon'>
-          <i class="fad fa-desktop svg-icon theme-light-hide svg-icon-3"></i>
+          <i class="fad fa-desktop theme-light-hide"></i>
         </span>
         <span class='menu-title'>System</span>
       </a>

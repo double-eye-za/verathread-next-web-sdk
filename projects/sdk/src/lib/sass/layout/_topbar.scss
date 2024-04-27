@@ -4,14 +4,9 @@
 
 // Base
 .topbar {
-  .svg-icon-1, .svg-icon-2 {
-    width: 20px;
-    height: 20px;
-  }
-
-  .svg-icon-4 {
-    width: 24px;
-    height: 24px;
+  .toolbar-icon {
+    color: $white;
+    font-size: 1.5rem !important;
   }
 
   // Fixed header & NON sticky header modes
@@ -26,11 +21,9 @@
       color: $white;
       background-color: rgba($white, 0.1) !important;
 
-      i,
-      .svg-icon {
+      i {
         color: $white;
-        width: 20px;
-        height: 20px;
+        font-size: 1.5rem !important;
       }
     }
   }

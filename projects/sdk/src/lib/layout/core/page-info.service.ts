@@ -5,9 +5,9 @@ import {Environment} from "../../model";
 export const PAGE_INFO_TOKEN = new InjectionToken<Environment>('page.info');
 
 export interface PageLink {
-  title: string;
-  path: string;
-  isActive: boolean;
+  title?: string;
+  path?: string;
+  isActive?: boolean;
   isSeparator?: boolean;
 }
 
@@ -74,8 +74,8 @@ export class PageInfoService {
     }
 
     const allActiveMenuLinks = Array.from<HTMLLinkElement>(
-      menu.querySelectorAll('a.menu-link')
-    ).filter((link) => link.classList.contains('active'));
+      menu.querySelectorAll('span.menu-link')
+    ).filter((link) => link.classList.contains('active') && link.classList.contains('navigable'));
 
     if (!allActiveMenuLinks || allActiveMenuLinks.length === 0) {
       return;
