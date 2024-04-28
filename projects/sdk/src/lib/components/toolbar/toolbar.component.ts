@@ -36,12 +36,20 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   constructor(private layout: LayoutService) {}
 
   ngOnInit(): void {
-    this.toolbarContainerCssClasses = this.layout.getStringCSSClasses('toolbarContainer');
-    this.pageTitleCssClasses = this.layout.getStringCSSClasses('pageTitle');
-    this.pageTitleAttributes = this.layout.getHTMLAttributes('pageTitle');
+    this.updateClasses();
+    this.layout.toolbarConfigChanged.subscribe(value => {
+      setTimeout(() => {
+        this.updateClasses();
+        this.updateAttributes();
+      })
+    })
   }
 
   ngAfterViewInit() {
+    this.updateAttributes()
+  }
+
+  private updateAttributes() {
     if (this.ktPageTitle) {
       for (const key in this.pageTitleAttributes) {
         if (
@@ -53,5 +61,11 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
         }
       }
     }
+  }
+
+  private updateClasses() {
+    this.toolbarContainerCssClasses = this.layout.getStringCSSClasses('toolbarContainer');
+    this.pageTitleCssClasses = this.layout.getStringCSSClasses('pageTitle');
+    this.pageTitleAttributes = this.layout.getHTMLAttributes('pageTitle');
   }
 }

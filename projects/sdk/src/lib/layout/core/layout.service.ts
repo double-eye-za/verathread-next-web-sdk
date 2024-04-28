@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import * as objectPath from 'object-path';
 import {
   ILayout,
@@ -58,6 +58,7 @@ export function getEmptyCssClasses(): {
 export class LayoutService {
   public layoutConfigSubject: BehaviorSubject<LayoutType> = new BehaviorSubject<LayoutType>(undefined);
   public scriptsInitialized: boolean;
+  public toolbarConfigChanged = new Subject()
 
   // scope list of css classes
   private classes: {
@@ -410,6 +411,8 @@ export class LayoutService {
       }
 
       document.body.setAttribute('style', bodyStyles);
+
+      this.toolbarConfigChanged.next(true);
     }
   }
 
