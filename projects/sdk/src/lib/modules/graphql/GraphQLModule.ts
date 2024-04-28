@@ -1,26 +1,25 @@
 import {InjectionToken, ModuleWithProviders, NgModule, NgZone} from "@angular/core";
 import {Apollo, APOLLO_OPTIONS} from "apollo-angular";
 import {HttpLink} from "apollo-angular/http";
-import {HttpClientModule, HttpHeaders} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {InMemoryCache} from '@apollo/client/cache';
 import {ApolloClientOptions, ApolloLink, from, Operation, split} from "@apollo/client/core";
 import {WebSocketLink} from "@apollo/client/link/ws";
 import {getMainDefinition, offsetLimitPagination} from "@apollo/client/utilities";
-import {OperationDefinitionNode} from "graphql/language/ast";
-import {RetryLink} from "@apollo/client/link/retry";
 
 export const GRAPHQL_CONFIG = new InjectionToken<GraphQLConfiguration>('graphql.config');
 
 export interface GraphQLConfiguration {
   url: string;
-  wsUrl: string
+  wsUrl: string;
+  tokenLocalStorageToken: string;
 }
 
-function setTokenInHeader(operation: Operation) {
+function setTokenInHeader(operation: Operation, cfg: GraphQLConfiguration) {
   if (localStorage.getItem('token')) {
     operation.setContext({
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem(cfg.tokenLocalStorageToken)}`,
         Accept: 'charset=utf-8',
       },
     });
@@ -31,7 +30,7 @@ const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration, cache: InM
   console.info('initializing apollo', cfg.url, cfg.wsUrl);
 
   const auth = new ApolloLink((operation, forward) => {
-    setTokenInHeader(operation);
+    setTokenInHeader(operation, cfg);
     return forward(operation);
   });
 
@@ -45,9 +44,14 @@ const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration, cache: InM
       minTimeout: 10000,
       connectionParams: async () => {
         return {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem(cfg.tokenLocalStorageToken)}`,
         };
       },
+      connectionCallback: (error, result) => {
+        if (error) {
+          console.error('ws connection error', error);
+        }
+      }
     },
   });
 
@@ -57,19 +61,8 @@ const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration, cache: InM
 
   const link = from([
     auth,
-    new RetryLink({
-      delay: {
-        initial: 300,
-        max: 5000,
-        jitter: true,
-      },
-      attempts: {
-        max: 3,
-        retryIf: (error, _operation) => !!error,
-      },
-    }),
     split(
-      ({ query }) => {
+      ({query}) => {
         const data = getMainDefinition(query);
         return data.kind === 'OperationDefinition' && data.operation === 'subscription';
       },
@@ -89,7 +82,6 @@ const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration, cache: InM
       },
       query: {
         fetchPolicy: 'network-only',
-        errorPolicy: 'all',
       },
     },
   }
