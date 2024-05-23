@@ -6,6 +6,8 @@ import {InMemoryCache} from '@apollo/client/cache';
 import {ApolloClientOptions, ApolloLink, from, Operation, split} from "@apollo/client/core";
 import {WebSocketLink} from "@apollo/client/link/ws";
 import {getMainDefinition, offsetLimitPagination} from "@apollo/client/utilities";
+import {GqlService} from "./graphql.service";
+import {Logger} from "../logging/logger.service";
 
 export const GRAPHQL_CONFIG = new InjectionToken<GraphQLConfiguration>('graphql.config');
 
@@ -16,7 +18,7 @@ export interface GraphQLConfiguration {
 }
 
 function setTokenInHeader(operation: Operation, cfg: GraphQLConfiguration) {
-  if (localStorage.getItem('token')) {
+  if (localStorage.getItem(cfg.tokenLocalStorageToken)) {
     operation.setContext({
       headers: {
         Authorization: `Bearer ${localStorage.getItem(cfg.tokenLocalStorageToken)}`,
@@ -26,8 +28,8 @@ function setTokenInHeader(operation: Operation, cfg: GraphQLConfiguration) {
   }
 }
 
-const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration, cache: InMemoryCache): ApolloClientOptions<any> => {
-  console.info('initializing apollo', cfg.url, cfg.wsUrl);
+const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration, cache: InMemoryCache, svc: GqlService, log: Logger): ApolloClientOptions<any> => {
+  log.debug('initializing apollo', cfg.url, cfg.wsUrl);
 
   const auth = new ApolloLink((operation, forward) => {
     setTokenInHeader(operation, cfg);
@@ -49,7 +51,8 @@ const apolloFactory = (httpLink: HttpLink, cfg: GraphQLConfiguration, cache: InM
       },
       connectionCallback: (error, result) => {
         if (error) {
-          console.error('ws connection error', error);
+          svc.onConnectionError(error)
+          log.error('ws connection error', error);
         }
       }
     },
@@ -105,10 +108,10 @@ export class GraphQLModule {
           deps: [HttpLink, GRAPHQL_CONFIG, InMemoryCache],
         },
         {
-          provide: Apollo, useFactory: (zone: NgZone, httpLink: HttpLink, cache: InMemoryCache) => {
-            console.info('initializing apollo client')
-            return new Apollo(zone, apolloFactory(httpLink, config, cache))
-          }, deps: [NgZone, HttpLink, InMemoryCache]
+          provide: Apollo, useFactory: (zone: NgZone, httpLink: HttpLink, cache: InMemoryCache, svc: GqlService, log: Logger) => {
+            log.debug('initializing apollo client')
+            return new Apollo(zone, apolloFactory(httpLink, config, cache, svc, log))
+          }, deps: [NgZone, HttpLink, InMemoryCache, GqlService, Logger]
         },
         {
           provide: InMemoryCache, useValue: new InMemoryCache({
@@ -116,6 +119,9 @@ export class GraphQLModule {
               traders: offsetLimitPagination(['where', 'sort', 'page'])
             }
           })
+        },
+        {
+          provide: GqlService, useClass: GqlService
         }
       ]
     }

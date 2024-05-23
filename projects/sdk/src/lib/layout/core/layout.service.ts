@@ -6,6 +6,7 @@ import {
   DefaultLayoutConfig,
   ILayoutCSSVariables, IHeader,
 } from './default-layout.config';
+import {Logger} from "../../modules";
 
 const LAYOUT_CONFIG_LOCAL_STORAGE_KEY = `layoutConfig`;
 
@@ -75,19 +76,21 @@ export class LayoutService {
   // scope list of body css variables
   private cssVariables: ILayoutCSSVariables | undefined;
 
-  constructor() {}
+  constructor(private log: Logger) {}
 
   initConfig(): void {
     const configFromLocalStorage = localStorage.getItem(
       LAYOUT_CONFIG_LOCAL_STORAGE_KEY
     );
+    this.log.debug('initializing layout')
+
     if (configFromLocalStorage) {
       try {
         this.layoutConfigSubject.next(JSON.parse(configFromLocalStorage));
         return;
       } catch (error) {
         this.removeConfig();
-        console.error('config parse from local storage', error);
+        this.log.error('config parse from local storage', error);
       }
     }
     this.layoutConfigSubject.next(DefaultLayoutConfig);

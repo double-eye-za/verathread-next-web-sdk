@@ -3,7 +3,7 @@
 
 import {Injectable, InjectionToken} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import {GraphQLConfiguration} from "../graphql/GraphQLModule";
+import {GraphQLConfiguration} from "../graphql/graphql.module";
 
 export interface Locale {
   lang: string;

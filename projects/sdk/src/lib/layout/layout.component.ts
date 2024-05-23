@@ -1,6 +1,6 @@
 import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LayoutInitService, LayoutService} from "./core";
-import {ActivatedRoute, NavigationCancel, NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter, map, switchMap} from "rxjs/operators";
 import {of} from "rxjs";
 
@@ -19,14 +19,11 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   displayHeader: boolean = true;
 
   constructor(
-    private initService: LayoutInitService,
     private layout: LayoutService,
     private cdr: ChangeDetectorRef,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.initService.init();
-
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
@@ -35,7 +32,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     ).subscribe((data: any) => {
       if (data && data['header']) {
         this.layout.updateHeader(data['header'])
-      } else {
+      } else if (this.layout.getConfig().header.display) {
         this.layout.showHeader()
       }
     })

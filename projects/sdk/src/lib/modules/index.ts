@@ -1,2 +1,5 @@
-export * from './graphql/GraphQLModule'
+export * from './graphql/graphql.module'
+export * from './graphql/graphql.service'
 export * from './i18n'
+export * from './logging/logging.module'
+export * from './logging/logger.service'
