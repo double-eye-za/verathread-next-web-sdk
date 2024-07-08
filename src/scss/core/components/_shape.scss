@@ -1,0 +1,15 @@
+//
+// Shape
+//
+
+.xehagon {
+    //$edges-number: 6, $main-radius: 30%, $rounding-radius: 10%, $rotated: true, $precision: 20
+    // TODO this is not compiling in Hugo
+    //@include shape(6);
+}
+
+.octagon {
+    //$edges-number: 6, $main-radius: 30%, $rounding-radius: 10%, $rotated: true, $precision: 20
+    // TODO this is not compiling in Hugo
+    //@include shape(8);
+}
