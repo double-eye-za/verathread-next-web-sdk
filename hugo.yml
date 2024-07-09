@@ -1,6 +1,6 @@
 languageCode:           "en"
 title:                  "Bootstrap"
-baseURL:                "https://getbootstrap.com"
+baseURL:                "https://sdk.verathread.dev"
 
 security:
   enableInlineShortcodes: true
@@ -100,3 +100,7 @@ params:
   anchors:
     min: 2
     max: 5
+
+  services:
+    googleAnalytics:
+      ID: G-W75F45FW3W
