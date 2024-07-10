@@ -199,8 +199,6 @@ jobs:
             --install --wait --atomic --create-namespace --timeout=2m \
             --namespace=vth-sdk-docs \
             --values=site/deployment/chart/values.yaml
-      - name: "Undeploy QA Chart"
-        run: helm uninstall ${{ steps.issue.outputs.lowercase }}-sdk --namespace=vth-sdk-docs --ignore-not-found
       - name: "Push Git Tag"
         run: git tag ${{ steps.tag.outputs.tag }}-chart && git push origin tag ${{ steps.tag.outputs.tag }}-chart
       - name: "Download Docs Artifact"
