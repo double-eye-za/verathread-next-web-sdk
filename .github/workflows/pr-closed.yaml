@@ -1,0 +1,92 @@
+name: PR Closed - Cleanup
+
+#/////////////////////////////////////////////////////////////////////////////////////////////////////////
+# VERATHREAD FRONT END SDK
+#/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+on:
+  pull_request:
+    types: [closed]
+
+env:
+  AWS_REGION: eu-west-2
+  FORCE_COLOR: 1
+  DRY_RUN: false
+  DEPLOY: true
+  RUNNER_ALLOW_RUNASROOT: "1"
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    name: "Clean Up"
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+      - name: "Configure Environment"
+        uses: ./.github/actions/configuration
+        id: configure
+        with:
+          jira-base-url: ${{ secrets.JIRA_BASE_URL }}
+          jira-user-email: ${{ secrets.JIRA_USER_EMAIL }}
+          jira-api-token: ${{ secrets.JIRA_API_TOKEN }}
+          use-sudo: true
+      - name: "Install Helm"
+        uses: azure/setup-helm@v4.2.0
+      - name: "Install Kubectl"
+        uses: azure/setup-kubectl@v4
+      - name: "GHCR Login"
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.PAT_TOKEN }}
+      - name: "Change Issue Case"
+        id: issue
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ steps.configure.outputs.issue }}
+      - name: "Set Kube Config"
+        run: |
+          mkdir -p ~/.kube && echo "${{ secrets.KUBECONFIG_DEV }}" | base64 -d > ~/.kube/config
+          chmod go-r ~/.kube/config
+      - name: "Cancel Running Workflows"
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const workflowIds = [
+              '.github/workflows/pr.yaml'
+            ];
+
+            for (const workflowId of workflowIds) {
+              const workflowRuns = await github.rest.actions.listWorkflowRuns({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: workflowId,
+                per_page: 100,
+                event: 'pull_request',
+                branch: context.payload.pull_request.head.ref,
+              });
+            
+              const activeRuns = workflowRuns.data.workflow_runs.filter((workflowRun) => {
+                return workflowRun.status === 'queued' || workflowRun.status === 'in_progress' || workflowRun.status === 'waiting';
+              });
+            
+              for (const activeRun of activeRuns) {
+                await github.rest.actions.cancelWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: activeRun.id,
+                });
+              }
+            }
+      - name: "Undeploy QA Chart"
+        run: helm uninstall ${{ steps.issue.outputs.lowercase }}-sdk --namespace=vth-sdk-docs --ignore-not-found
+      - name: "Clean Up Packages"
+        uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          tags: ${{ steps.configure.outputs.issue }}
+          exclude-tags: 'v*,latest'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: azarc-io
+          package: verathread-next-web-sdk/docs
+          log-level: debug
