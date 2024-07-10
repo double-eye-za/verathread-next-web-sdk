@@ -239,34 +239,3 @@ jobs:
 #          cp ../../.npmrc .npmrc
 #          yarn version --no-commit-hooks --no-git-tag-version --new-version ${{ needs.flags.outputs.version }}
 #          yarn publish
-
-  cleanup:
-    runs-on: ubuntu-latest
-    name: "Clean Up"
-    needs:
-      - release
-    environment: production
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.PAT_TOKEN }}
-          ref: ${{ github.event.pull_request.head.sha }}
-      - name: "Configure Environment"
-        uses: ./.github/actions/configuration
-        id: configure
-        with:
-          jira-base-url: ${{ secrets.JIRA_BASE_URL }}
-          jira-user-email: ${{ secrets.JIRA_USER_EMAIL }}
-          jira-api-token: ${{ secrets.JIRA_API_TOKEN }}
-          use-sudo: true
-      - name: "Clean Up Packages"
-        uses: dataaxiom/ghcr-cleanup-action@v1
-        with:
-          tags: ${{ steps.configure.outputs.issue }}
-          exclude-tags: 'v*,latest'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          owner: azarc-io
-          package: verathread-next-web-sdk/docs
-          log-level: debug
