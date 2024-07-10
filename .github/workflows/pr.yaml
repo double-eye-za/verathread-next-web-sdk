@@ -233,7 +233,7 @@ jobs:
           files: |
             bin/site.zip
             bin/package.zip
-      - name: "Clean Up FE Packages"
+      - name: "Clean Up Packages"
         uses: dataaxiom/ghcr-cleanup-action@v1
         with:
           tags: ${{ steps.configure.outputs.issue }}
@@ -242,7 +242,6 @@ jobs:
           owner: azarc-io
           package: verathread-next-web-sdk/docs
           log-level: debug
-
 #      - name: "Publish"
 #        if: env.DRY_RUN == 'false'
 #        run: |
