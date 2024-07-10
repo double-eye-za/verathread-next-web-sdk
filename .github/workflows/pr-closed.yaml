@@ -83,12 +83,13 @@ jobs:
             }
       - name: "Undeploy QA Chart"
         run: helm uninstall ${{ steps.issue.outputs.lowercase }}-sdk --namespace=vth-sdk-docs --ignore-not-found
-      - name: "Clean Up Packages"
-        uses: dataaxiom/ghcr-cleanup-action@v1
-        with:
-          tags: ${{ steps.configure.outputs.issue }}
-          exclude-tags: 'v*,latest'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          owner: azarc-io
-          package: verathread-next-web-sdk/docs
-          log-level: debug
+#      TODO fix me, errors on pr merged but not on PR closed
+#      - name: "Clean Up Packages"
+#        uses: dataaxiom/ghcr-cleanup-action@v1
+#        with:
+#          tags: ${{ steps.configure.outputs.issue }}
+#          exclude-tags: 'v*,latest'
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          owner: azarc-io
+#          package: verathread-next-web-sdk/docs
+#          log-level: debug
