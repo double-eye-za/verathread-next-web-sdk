@@ -360,8 +360,9 @@ $gutters: (
 // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 // Font family
-$font-family-sans-serif: Inter, Helvetica, "sans-serif" !default;
+$font-family-sans-serif: "Outfit", sans-serif !default;
 
 $font-size-base: 1rem !default; // Assumes the browser default, typically `13px`
 $font-size-lg: $font-size-base * 1.075 !default; // 14.04px
