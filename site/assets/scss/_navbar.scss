@@ -9,7 +9,8 @@
     z-index: -1;
     display: block;
     content: "";
-    background-image: linear-gradient(rgba(var(--bd-violet-rgb), 1), rgba(var(--bd-violet-rgb), .95));
+    // background-image: linear-gradient(rgba(var(--bd-violet-rgb), 1), rgba(var(--bd-violet-rgb), .95));
+    background: hsl(204, 81%, 23%);
   }
 
   .bd-navbar-toggle {
@@ -120,6 +121,10 @@
   .dropdown-menu-end {
     --bs-dropdown-min-width: 8rem;
   }
+}
+
+.brand-img {
+  background-image: url(site/layouts/partials/assets/logo_Azarc-V6.png);
 }
 
 @include color-mode(dark) {

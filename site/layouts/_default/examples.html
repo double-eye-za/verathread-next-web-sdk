@@ -123,6 +123,12 @@
     {{- else -}}
       <script defer src="/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.js"></script>
     {{- end }}
+    This answer is not useful
+https://cdnjs.com/libraries/popper.js does not look like a right src for popper, it does not specify the file
+
+with bootstrap 4 I am using this
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
     {{ range .Page.Params.extra_js -}}
       <script{{ with .async }} async{{ end }}{{ with .defer }} defer{{ end }} src="{{ .src }}"{{ with .integrity }} {{ printf "integrity=%q" . | safeHTMLAttr }} crossorigin="anonymous"{{ end }}></script>

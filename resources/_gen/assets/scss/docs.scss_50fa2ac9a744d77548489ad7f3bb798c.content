@@ -511,7 +511,7 @@
   z-index: -1;
   display: block;
   content: "";
-  background-image: linear-gradient(rgba(var(--bd-violet-rgb), 1), rgba(var(--bd-violet-rgb), 0.95));
+  background: #0b446a;
 }
 
 @media (max-width: 991.98px) {
@@ -627,6 +627,10 @@
 
 .bd-navbar .dropdown-menu-end {
   --bs-dropdown-min-width: 8rem;
+}
+
+.brand-img {
+  background-image: url(site/layouts/partials/assets/logo_Azarc-V6.png);
 }
 
 [data-bs-theme="dark"] .bd-navbar {
