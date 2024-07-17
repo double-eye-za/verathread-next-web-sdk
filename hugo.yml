@@ -1,5 +1,5 @@
 languageCode:           "en"
-title:                  "Bootstrap"
+title:                  "Azarc - Verathread"
 baseURL:                "https://sdk.verathread.dev"
 
 security:
@@ -53,22 +53,16 @@ module:
       target:           static/favicon.ico
 
 params:
-  subtitle:             "The most popular HTML, CSS, and JS library in the world."
-  description:          "Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize prebuilt grid system and components, and bring projects to life with powerful JavaScript plugins."
-  authors:              "Mark Otto, Jacob Thornton, and Bootstrap contributors"
+  subtitle:             "Automating Customs clearing processes."
+  description:          "Your clearing marketing place."
+  authors:              "Azarc"
 
   current_version:      "5.3.3"
   current_ruby_version: "5.3.3"
   docs_version:         "5.3"
-  rfs_version:          "v10.0.0"
+  rfs_version:          "v0.1.0"
   github_org:           "https://github.com/twbs"
   repo:                 "https://github.com/twbs/bootstrap"
-  twitter:              "getbootstrap"
-  opencollective:       "https://opencollective.com/bootstrap"
-  blog:                 "https://blog.getbootstrap.com/"
-  themes:               "https://themes.getbootstrap.com/"
-  icons:                "https://icons.getbootstrap.com/"
-  swag:                 "https://cottonbureau.com/people/bootstrap"
 
   analytics:
     fathom_site:        "ITUSEYJG"
@@ -76,7 +70,7 @@ params:
   algolia:
     appId:              "AK7KMZKZHQ"
     apiKey:             "3151f502c7b9e9dafd5e6372b691a24e"
-    indexName:          "bootstrap"
+    indexName:          "Verathread"
 
   download:
     source:             "https://github.com/twbs/bootstrap/archive/v5.3.3.zip"

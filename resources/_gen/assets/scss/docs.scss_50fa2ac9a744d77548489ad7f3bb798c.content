@@ -2975,3 +2975,7 @@ main [tabindex="0"] {
   text-decoration: none;
   opacity: 1;
 }
+
+svg {
+  color: #ff4d00;
+}

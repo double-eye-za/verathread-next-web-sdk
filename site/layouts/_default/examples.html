@@ -121,7 +121,7 @@
     {{- if hugo.IsProduction -}}
       <script defer src="/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.min.js" {{ printf "integrity=%q" .Site.Params.cdn.js_bundle_hash | safeHTMLAttr }}></script>
     {{- else -}}
-      <script defer src="/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.js"></script>
+      <script defer src="/assets/js/bootstrap.bundle.js"></script>
     {{- end }}
     This answer is not useful
 https://cdnjs.com/libraries/popper.js does not look like a right src for popper, it does not specify the file
