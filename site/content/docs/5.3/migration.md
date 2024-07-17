@@ -572,12 +572,6 @@ Want more information? [Read the v5.1.0 blog post.](https://blog.getbootstrap.co
 
 - <span class="badge text-bg-danger">Breaking</span> Replaced the `.card` based accordion with a [new Accordion component]({{< docsref "/components/accordion" >}}).
 
-#### Carousel
-
-- Added new [`.carousel-dark` variant]({{< docsref "/components/carousel#dark-variant" >}}) for dark text, controls, and indicators (great for lighter backgrounds).
-
-<!-- - Replaced chevron icons for carousel controls with new SVGs from [Bootstrap Icons]({{< param "icons" >}}). -->
-
 #### Close button
 
 - <span class="badge text-bg-danger">Breaking</span> Renamed `.close` to `.btn-close` for a less generic name.

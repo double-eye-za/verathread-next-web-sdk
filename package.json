@@ -7,7 +7,7 @@
     "build:sass": "parcel build src/scss/index.scss",
     "docs": "npm-run-all docs-build",
     "docs-build": "hugo --cleanDestinationDir --printUnusedTemplates",
-    "docs-compile": "npm run docs-build",
+    "docs-compile": "npm run docs-build",  
     "docs-serve": "hugo server --port 9001 --disableFastRender --noHTTPCache --renderToMemory --printPathWarnings --printUnusedTemplates",
     "docs-serve-only": "npx sirv-cli _site --port 9001"
   },
