@@ -1,5 +1,5 @@
 <header class="navbar navbar-expand-lg bd-navbar sticky-top">
-  <nav class="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+  <nav class="container bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
     {{- if eq .Layout "docs" }}
     <div class="bd-navbar-toggle">
       <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" aria-controls="bdSidebar" aria-label="Toggle docs navigation">
@@ -12,7 +12,7 @@
     {{- end }}
 
     <a class="navbar-brand p-0 me-0 me-lg-2" href="/" aria-label="Azarc">
-      <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" width="200" alt="Verathread logo">
+      <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" width="120" alt="Verathread logo">
     </a>
 
     <div class="d-flex">
@@ -53,14 +53,6 @@
             <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
             <hr class="d-lg-none my-2 text-white-50">
           </li>
-
-          {{ partial "docs-versions" . }}
-
-          <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
-            <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
-            <hr class="d-lg-none my-2 text-white-50">
-          </li>
-
           <li class="nav-item dropdown">
             {{ partial "theme-toggler" . }}
           </li>

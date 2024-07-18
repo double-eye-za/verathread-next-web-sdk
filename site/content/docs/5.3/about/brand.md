@@ -20,7 +20,7 @@ Our logo mark is also available in black and white. All rules for our primary lo
 
 <div class="bd-brand-logos d-sm-flex text-center bg-light rounded-3 overflow-hidden w-100 mb-3">
   <div class="bd-brand-item w-100 px-2 py-5">
-    <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-black.svg" alt="Bootstrap" width="128" height="102" loading="lazy">
+    <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-black.svg" alt="Bootstrap" width="128" height="102" loading="lazy"> 
   </div>
   <div class="bd-brand-item w-100 px-2 py-5 inverse">
     <img src="/docs/{{< param docs_version >}}/assets/brand/bootstrap-logo-white.svg" alt="Bootstrap" width="128" height="102" loading="lazy">
