@@ -1,3 +1,5 @@
+/** @format */
+
 //
 // Theme style
 //
@@ -11,3 +13,51 @@
 
 // Layout
 @import "./layout/layout";
+
+:root {
+    --bs-white: #ffffff;
+    --bs-primary: #0b3f5c;
+    --bs-nav-pills-link-active-bg: var(--bs-primary);
+    --bs-info: hsl(151, 63%, 64%);
+    --bs-info-bg-subtle: hsla(151, 63%, 64%, 0.5);
+    --bs-info-border-subtle: hsla(151, 63%, 64%, 0.5);
+    --bs-info-text-emphasis: hsl(0, 0%, 15%);
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #0ec86f;
+    text-decoration: none;
+}
+
+.bg-primary {
+    --bs-bg-rgb-color: var(--bs-primary-rgb);
+    background-color: var(--bs-primary) !important;
+    --bd-callout-color: #69dda5;
+}
+
+#pillNav {
+    color: #000000;
+    .nav-item {
+        color: #000000;
+    }
+}
+.nav-pills {
+    --bs-nav-pills-link-active-color: #fff;
+    // --bs-nav-pills-link-active-bg: #f24106;
+    border: 1px solid #0f9ae8;
+    color: #000000;
+
+    .nav-link {
+        color: #ffffff;
+    }
+    .nav-link.active {
+        background-color: #0f9ae8;
+        color: #000000;
+    }
+}
+
+.bd-callout {
+    border-left: 5px solid #0f9ae8 !important;
+    background-color: #69dda5 !important;
+}
