@@ -6,13 +6,13 @@
   icon_color: indigo
   pages:
     - title: Introduction
-    - title: Download
-    - title: Contents
+    # - title: Download
+    # - title: Contents
     - title: Browsers & devices
     - title: JavaScript
-    - title: Webpack
-    - title: Parcel
-    - title: Vite
+    # - title: Webpack
+    # - title: Parcel
+    # - title: Vite
     - title: Accessibility
     - title: RFS
     - title: RTL
@@ -143,17 +143,17 @@
   icon: tools
   icon_color: blue
   pages:
-    - title: Approach
+    # - title: Approach
     - title: Icons
 
 - title: About
   icon: globe2
   icon_color: indigo
   pages:
-    - title: Overview
-    - title: Team
-    - title: Brand
+    # - title: Overview
+    # - title: Team
+    # - title: Brand
     - title: License
-    - title: Translations
+    # - title: Translations
 
 - title: Migration

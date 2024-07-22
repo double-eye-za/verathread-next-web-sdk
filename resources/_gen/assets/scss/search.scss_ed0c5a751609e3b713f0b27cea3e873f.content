@@ -5,30 +5,31 @@
  * Licensed under the Creative Commons Attribution 3.0 Unported License.
  * For details, see https://creativecommons.org/licenses/by/3.0/.
  */
+/** @format */
 :root,
 [data-bs-theme="light"] {
-  --bd-purple: #4c0bce;
-  --bd-violet: #712cf9;
+  --bd-purple: #0b3f5c;
+  --bd-violet: #0f6fa5;
   --bd-accent: #ffe484;
-  --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+  --bd-violet-rgb: 14.682403, 111.065491, 164.817597;
   --bd-accent-rgb: 255, 228, 132;
-  --bd-pink-rgb: 214, 51, 132;
-  --bd-teal-rgb: 32, 201, 151;
+  --bd-pink-rgb: 100, 39, 39;
+  --bd-teal-rgb: 121, 182, 217;
   --bd-violet-bg: var(--bd-violet);
   --bd-toc-color: var(--bd-violet);
-  --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), .1);
-  --bd-callout-link: 10, 88, 202;
-  --bd-callout-code-color: #ab296a;
+  --bd-sidebar-link-bg: rgba(var(--bd-violet-rgb), 0.1);
+  --bd-callout-link: 12, 123, 186;
+  --bd-callout-code-color: #501f1f;
   --bd-pre-bg: var(--bs-tertiary-bg);
 }
 
 [data-bs-theme="dark"] {
-  --bd-violet: #9461fb;
-  --bd-violet-bg: #712cf9;
+  --bd-violet: #4b93bb;
+  --bd-violet-bg: #0f6fa5;
   --bd-toc-color: var(--bs-emphasis-color);
-  --bd-sidebar-link-bg: rgba(84, 33, 187, .5);
-  --bd-callout-link: 110, 168, 254;
-  --bd-callout-code-color: #e685b5;
+  --bd-sidebar-link-bg: rgba(11, 83, 124, 0.5);
+  --bd-callout-link: 111, 194, 241;
+  --bd-callout-code-color: #a27d7d;
   --bd-pre-bg: #1b1f22;
 }
 
