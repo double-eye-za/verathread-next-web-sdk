@@ -1,10 +1,12 @@
+/** @format */
+
 //
 // Root
 //
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 
 html {
-  font-family: sans-serif;
-  text-size-adjust: 100%;
+    font-family: "Outfit", sans-serif;
 }
 
 html,
@@ -26,7 +28,7 @@ body {
     // Mobile mode
     @include media-breakpoint-down(md) {
         font-size: $root-font-size-md !important;
-    }    
+    }
 }
 
 body {

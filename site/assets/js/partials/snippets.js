@@ -58,7 +58,6 @@ export default () => {
     })
 
   // Instantiate all toasts in docs pages only
-  // js-docs-start live-toast
   const toastTrigger = document.getElementById('liveToastBtn')
   const toastLiveExample = document.getElementById('liveToast')
 
@@ -68,14 +67,12 @@ export default () => {
       toastBootstrap.show()
     })
   }
-  // js-docs-end live-toast
 
   // -------------------------------
   // Alerts
   // -------------------------------
   // Used in 'Show live alert' example in docs or StackBlitz
 
-  // js-docs-start live-alert
   const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
   const appendAlert = (message, type) => {
     const wrapper = document.createElement('div')
@@ -95,7 +92,6 @@ export default () => {
       appendAlert('Nice, you triggered this alert message!', 'success')
     })
   }
-  // js-docs-end live-alert
 
   // --------
   // Carousels

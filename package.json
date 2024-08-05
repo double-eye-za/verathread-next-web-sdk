@@ -7,13 +7,13 @@
     "build:sass": "parcel build src/scss/index.scss",
     "docs": "npm-run-all docs-build",
     "docs-build": "hugo --cleanDestinationDir --printUnusedTemplates",
-    "docs-compile": "npm run docs-build",  
-    "docs-serve": "hugo server --port 9001 --disableFastRender --noHTTPCache --renderToMemory --printPathWarnings --printUnusedTemplates",
+    "docs-compile": "npm run docs-build",
+    "docs-serve": "hugo server --port 3000 --disableFastRender --noHTTPCache --renderToMemory --printPathWarnings --printUnusedTemplates",
     "docs-serve-only": "npx sirv-cli _site --port 9001"
   },
   "devDependencies": {
     "@docsearch/js": "^3.6.0",
-    "@parcel/transformer-sass": "2.12.0", 
+    "@parcel/transformer-sass": "2.12.0",
     "@popperjs/core": "^2.11.8",
     "@stackblitz/sdk": "^1.11.0",
     "autoprefixer": "^10.4.19",
@@ -29,6 +29,8 @@
     "sass-true": "^8.0.0"
   },
   "sass": {
-    "includePaths": ["./node_modules"]
+    "includePaths": [
+      "./node_modules"
+    ]
   }
 }

@@ -6,13 +6,8 @@
   icon_color: indigo
   pages:
     - title: Introduction
-    # - title: Download
-    # - title: Contents
     - title: Browsers & devices
     - title: JavaScript
-    # - title: Webpack
-    # - title: Parcel
-    # - title: Vite
     - title: Accessibility
     - title: RFS
     - title: RTL
@@ -43,6 +38,14 @@
     - title: Utilities
     - title: Z-index
     - title: CSS Grid
+
+- title: Verathread-layouts
+  icon: grid-fill
+  icon_color: green
+  pages:
+    - title: Shell layout
+    - title: Auth layouts
+    - title: Error layouts
 
 - title: Content
   icon: file-earmark-richtext

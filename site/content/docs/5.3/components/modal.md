@@ -481,8 +481,6 @@ Below is a live demo followed by example HTML and JavaScript. For more informati
 </div>
 {{< /example >}}
 
-{{< js-docs name="varying-modal-content" file="site/assets/js/partials/snippets.js" >}}
-
 ### Toggle between modals
 
 Toggle between multiple modals with some clever placement of the `data-bs-target` and `data-bs-toggle` attributes. For example, you could toggle a password reset modal from within an already open sign in modal. **Please note multiple modals cannot be open at the same time**—this method simply toggles between two separate modals.

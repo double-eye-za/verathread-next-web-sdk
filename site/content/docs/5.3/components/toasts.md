@@ -87,8 +87,6 @@ Click the button below to show a toast (positioned with our utilities in the low
 
 We use the following JavaScript to trigger our live toast demo:
 
-{{< js-docs name="live-toast" file="site/assets/js/partials/snippets.js" >}}
-
 ### Translucent
 
 Toasts are slightly translucent to blend in with what's below them.

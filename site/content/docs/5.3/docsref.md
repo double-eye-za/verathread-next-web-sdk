@@ -46,5 +46,3 @@ sitemap:
 {{< /example >}}
 
 {{< scss-docs name="variable-gradient" file="node_modules/bootstrap/scss/_variables.scss" >}}
-
-{{< js-docs name="live-toast" file="site/assets/js/partials/snippets.js" >}}
