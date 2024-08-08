@@ -1182,6 +1182,7 @@
   text-decoration: underline;
 }
 
+/** @format */
 .bd-code-snippet {
   margin: 0 -1.5rem 1rem;
   border: solid var(--bs-border-color);
@@ -1227,7 +1228,7 @@
 }
 
 .bd-example > .form-control + .form-control {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .bd-example > .nav + .nav,
@@ -1253,16 +1254,16 @@
 
 .bd-example > svg + svg,
 .bd-example > img + img {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .bd-example > .btn,
 .bd-example > .btn-group {
-  margin: .25rem .125rem;
+  margin: 0.25rem 0.125rem;
 }
 
 .bd-example > .btn-toolbar + .btn-toolbar {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .bd-example > .list-group {
@@ -1292,8 +1293,8 @@
 .bd-example-row [class^="col"],
 .bd-example-cols [class^="col"] > *,
 .bd-example-cssgrid [class*="grid"] > * {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   background-color: rgba(var(--bd-violet-rgb), 0.15);
   border: 1px solid rgba(var(--bd-violet-rgb), 0.3);
 }
@@ -1417,7 +1418,7 @@
 }
 
 .tooltip-demo .btn {
-  margin: .25rem .125rem;
+  margin: 0.5rem 0.25rem;
 }
 
 .custom-tooltip {
@@ -1431,12 +1432,12 @@
   --bs-popover-header-bg: var(--bd-violet-bg);
   --bs-popover-header-color: var(--bs-white);
   --bs-popover-body-padding-x: 1rem;
-  --bs-popover-body-padding-y: .5rem;
+  --bs-popover-body-padding-y: 0.5rem;
 }
 
 .scrollspy-example {
   height: 200px;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   overflow: auto;
 }
 
@@ -1453,12 +1454,12 @@
   display: inline-block;
   width: 5rem;
   height: 5rem;
-  margin: .25rem;
+  margin: 0.25rem;
   background-color: var(--bs-tertiary-bg);
 }
 
 .bd-example-rounded-utils [class*="rounded"] {
-  margin: .25rem;
+  margin: 0.25rem;
 }
 
 .bd-example-position-utils {
@@ -1538,7 +1539,7 @@
 
 @media (min-width: 768px) {
   .highlight {
-    padding: .75rem 1.25rem;
+    padding: 0.75rem 1.25rem;
     border-radius: calc(var(--bs-border-radius) - 1px);
   }
 }
@@ -1550,8 +1551,8 @@
 }
 
 .highlight pre {
-  padding: .25rem 0 .875rem;
-  margin-top: .8125rem;
+  padding: 0.25rem 0 0.875rem;
+  margin-top: 0.8125rem;
   margin-bottom: 0;
   overflow: overlay;
   white-space: pre;

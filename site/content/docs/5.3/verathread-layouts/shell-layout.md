@@ -122,8 +122,8 @@ This example uses the Verathread Brand background and [spacing]({{< docsref "/ut
     </div>
     </div>
   </nav>
-<main class="container ratio ratio-16x9 border border-black bg-secondary-subtle h-500 overflow-x-scroll">
-  <div class="d-flex flex-column align-items-center justify-content-center p-4">
+<main class="container ratio ratio-16x9 border border-black bg-secondary-subtle overflow-x-scroll">
+  <div class="d-flex flex-column align-items-center justify-content-center p-40" style="height: 500px">
     <h1>Content</h1>
     <p>Content goes here.</p>
   </div>
@@ -139,7 +139,6 @@ This example uses the Verathread Brand background and [spacing]({{< docsref "/ut
   <div class="d-flex flex-column align-items-center justify-content-center p-4 h-500">
     <h1>Content</h1>
     <p>Content goes here. - Scrollable</p>
-    <p>lorem*500</p>
   </div>
 </main>
 {{< /example >}}

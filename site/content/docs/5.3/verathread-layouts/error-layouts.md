@@ -20,7 +20,7 @@ Here's what you need to know before getting started with the error pages:
 <main class="ratio ratio-16x9 bg-brand-linear">
   <div class="container d-flex align-items-center justify-content-center gap-10">
     <div>
-     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="200" loading="lazy">
+     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
      </div>
     <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
       <!-- <img src="/docs/5.3/assets/logos/icon_error-404.png" class="mb-3" alt="Service unavailable" width="100" /> -->
@@ -40,7 +40,7 @@ Here's what you need to know before getting started with the error pages:
 <main class="ratio ratio-16x9 bg-brand-linear">
   <div class="container d-flex justify-content-center align-items-center gap-10">
     <div>
-     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="200" loading="lazy">
+     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
      </div>
     <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
       <img src="/docs/5.3/assets/logos/icon_error-404.png" class="mb-3" alt="Service unavailable" width="100" />
@@ -59,13 +59,35 @@ Here's what you need to know before getting started with the error pages:
 <main class="vt-land ratio ratio-16x9 bg-brand-linear">
   <div class="container d-flex align-items-center justify-content-center gap-10">
     <div>
-     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="170" loading="lazy">
+     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
      </div>
     <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
       <!-- <img src="/docs/5.3/assets/logos/icon_error-503.png" class="mb-5" alt="Service unavailable" width="100" /> -->
       <h3 class="mb-5"><span class="text-danger">503:</span> Service interruption</h3>
       <p class="mb-auto">Sorry. Our service is experiencing a temporary interruption</p>
       <small>Please <a href="#">contact</a> us if the issue persists.</small>
+    </div>
+  </div>
+</main>
+{{< /example >}}
+<!-- markdownlint-enable MD033 -->
+
+## 503 Service Unavailable, with retry action button
+
+<!-- markdownlint-disable MD033 -->
+{{< example >}}
+<main class="vt-land ratio ratio-16x9 bg-brand-linear">
+  <div class="container d-flex align-items-center justify-content-center gap-10">
+    <div>
+     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
+     </div>
+    <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
+      <!-- <img src="/docs/5.3/assets/logos/icon_error-503.png" class="mb-5" alt="Service unavailable" width="100" /> -->
+      <h3 class="mb-5"><span class="text-danger">503:</span> Service interruption</h3>
+      <p class="mb-auto">Sorry. Our service is experiencing a temporary interruption</p>
+      <div class="mt-auto">
+            <button type="button" class="btn btn-sm text-white bg-info">Retry</button>
+          </div>
     </div>
   </div>
 </main>

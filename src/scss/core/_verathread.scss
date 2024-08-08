@@ -39,6 +39,75 @@ gap-10 {
     gap: 2.5rem;
 }
 
+.list-group {
+    --bs-list-group-color: #000;
+    --bs-btn-color: #fff;
+}
+
+[data-bs-theme="dark"] {
+    --bs-component-active-color: #000;
+    --bd-sidebar-link-bg: hsl(204, 81%, 23%, 0.5);
+
+    .bd-links-link:hover,
+    .bd-links-link:focus,
+    .bd-links-link.active {
+        background-color: hsl(204, 81%, 23%, 0.5);
+    }
+    .btn-light,
+    .alert-light,
+    .alert-dark,
+    .alert-secondary,
+    .text-bg-light {
+        color: #fff !important;
+    }
+
+    .alert-primary,
+    .alert-success,
+    .alert-warning {
+        color: #000;
+    }
+    .btn-warning,
+    .btn-success {
+        color: #000 !important;
+    }
+}
+
+.bg-light {
+    background-color: #fff !important;
+}
+
+.btn-secondary {
+    color: #fff !important;
+}
+
+.alert {
+    color: #000;
+}
+
+.btn-primary,
+.btn-info {
+    color: #000 !important;
+}
+
+.btn-danger {
+    color: #fff !important;
+}
+
+.dropdown-toggle:after {
+    color: #fff !important;
+}
+
+.alert {
+    .alert-link {
+        color: #0c018c;
+        text-decoration: underline;
+    }
+}
+
+.alert-secondary,
+.alert-danger {
+    color: #fff;
+}
 // .vt-land {
 //     background-image: url("./site/static/docs/5.3/assets/logos/icon_corner-bg.png_");
 // }

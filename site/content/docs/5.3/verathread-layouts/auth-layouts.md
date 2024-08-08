@@ -19,7 +19,7 @@ Here's what you need to know before getting started with the Auth. pages:
 <main class="landing ratio ratio-16x9 bg-brand-linear">
   <div class="container d-flex align-items-center justify-content-center gap-10">
     <div>
-     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="200" loading="lazy">
+     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
      </div>
     <div class="bg-light h-75 p-2 d-flex justify-content-center align-items-center rounded-2 w-40">
       <h1>Auth Content</h1>
@@ -39,11 +39,11 @@ Provide context and instructions for the user to log in. .
   <main class="landing ratio ratio-16x9 bg-brand-linear">
   <div class="container d-flex align-items-center justify-content-center gap-10">
     <div class="d-flex justify-content-center align-items-center">
-     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="200" loading="lazy">
+     <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
      </div>
     <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
       <h3 class="d-flex align-items-center">
-      <img src="/docs/5.3/assets/logos/icon_login-error.png" width="30" alt="Application not found" loading="lazy" /> Login</h3>
+      <img src="/docs/5.3/assets/logos/icon_login.png" width="30" alt="Application not found" loading="lazy" /> Login</h3>
       <p>The content you are trying to access requires you to be logged in. Please click the button to continue.</p>
       <div class="mt-auto">
         <button type="button" class="btn btn-sm text-white bg-info">Login to continue</button>
@@ -63,7 +63,7 @@ Provide context and instructions for the user to log out.
     <main class="landing ratio ratio-16x9 bg-brand-linear">
       <div class="container d-flex align-items-center justify-content-center gap-10">
         <div>
-        <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="200" loading="lazy">
+        <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
         </div>
         <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
           <h3>Logged out</h3>
@@ -87,7 +87,7 @@ Provide context and instructions for the user to wait for the page to load.
   <main class="landing ratio ratio-16x9 bg-brand-linear">
       <div class="container d-flex align-items-center justify-content-center gap-10">
         <div>
-          <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="200" loading="lazy">
+          <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
         </div>
       <div class="bg-light h-75 p-7 d-flex flex-column rounded-2  w-40">
            <div class="d-flex align-items-center justify-content-center mt-4">
@@ -112,7 +112,7 @@ If there is an error this will provide feedback on the error.
   <main class="landing ratio ratio-16x9 bg-brand-linear">
       <div class="container d-flex align-items-center justify-content-center gap-10">
         <div>
-          <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="200" loading="lazy">
+          <img src="/docs/5.3/assets/logos/Verathread-Tagline-Colour-Rev.png" alt="Verathread" width="300" loading="lazy">
         </div>
       <div class="bg-light h-75 p-7 d-flex flex-column rounded-2 w-40">
           <div class="d-flex align-items-center justify-content-center pt-3">
